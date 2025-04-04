@@ -1,26 +1,15 @@
 package br.com.alura.screenmatch.modelos;
 
 public class Pessoa {
-    private String nome;
-    private int idade;
+    private final String nome;
+    private final int idade;
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
+    public Pessoa(String nome, int idade) {
         this.nome = nome;
-    }
-
-    public int getIdade() {
-        return idade;
-    }
-
-    public void setIdade(int idade) {
         this.idade = idade;
     }
 
     public String toString() {
-        return "Pessoa: " + this.getNome();
+        return "Pessoa: " + nome + " (Idade: " + idade + ")";
     }
 }
