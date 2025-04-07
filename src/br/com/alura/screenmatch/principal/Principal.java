@@ -1,12 +1,16 @@
-package br.com.alura.screenmatch;
+package br.com.alura.screenmatch.principal;
 
 import br.com.alura.screenmatch.calculos.CalculadoraDeTempo;
 import br.com.alura.screenmatch.calculos.FiltroRecomendacao;
 import br.com.alura.screenmatch.modelos.Episodio;
 import br.com.alura.screenmatch.modelos.Filme;
 import br.com.alura.screenmatch.modelos.Pessoa;
+import br.com.alura.screenmatch.modelos.Produto;
+import br.com.alura.screenmatch.modelos.ProdutoPerecivel;
 import br.com.alura.screenmatch.modelos.Serie;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Principal {
@@ -75,5 +79,24 @@ public class Principal {
         for (Pessoa pessoa : listaDePessoas) {
             System.out.println(pessoa);
         }
+
+        ArrayList<Produto> listaDeProdutos = new ArrayList<>();
+        listaDeProdutos.add(new Produto("Creme dental", BigDecimal.valueOf(19.99), 2));
+        listaDeProdutos.add(new Produto("Escova de dentes", BigDecimal.valueOf(29.99), 3));
+
+        System.out.println("Número de itens na lista de produtos: %d".formatted(listaDeProdutos.size()));
+
+        for (Produto produto : listaDeProdutos) {
+            System.out.println(produto);
+        }
+
+        ProdutoPerecivel produtoPerecivel = new ProdutoPerecivel(
+            "Carne",
+            BigDecimal.valueOf(30.0),
+            1,
+            LocalDate.parse("2025-04-08")
+        );
+
+        System.out.println(produtoPerecivel);
     }
 }
