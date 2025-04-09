@@ -2,6 +2,8 @@ package br.com.alura.screenmatch.principal;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import br.com.alura.screenmatch.modelos.Animal;
 import br.com.alura.screenmatch.modelos.Cachorro;
 import br.com.alura.screenmatch.modelos.Circulo;
@@ -51,25 +53,29 @@ public class PrincipalComExercicio {
         circulo.calcularArea();
         quadrado.calcularArea();
 
-        ArrayList<ContaBancaria> contasBancarias = new ArrayList<>();
+        List<ContaBancaria> contasBancarias = new ArrayList<>();
         contasBancarias.add(new ContaBancaria("443322-5", BigDecimal.valueOf(43000.00)));
         contasBancarias.add(new ContaBancaria("948372-2", BigDecimal.valueOf(13000.00)));
         contasBancarias.add(new ContaBancaria("958372-2", BigDecimal.valueOf(12000.00)));
         contasBancarias.add(new ContaBancaria("946372-2", BigDecimal.valueOf(133000.00)));
 
-        ContaBancaria contaBancariaMenorSaldo = null;
-        for (ContaBancaria conta : contasBancarias) {
-            if (contaBancariaMenorSaldo == null) {
-                contaBancariaMenorSaldo = conta;
-                continue;
-            }
-            if (conta.getSaldo().compareTo(contaBancariaMenorSaldo.getSaldo()) > 0) {
-                contaBancariaMenorSaldo = conta;
-            }
-        }
+        // ContaBancaria contaBancariaMenorSaldo = null;
+        // for (ContaBancaria conta : contasBancarias) {
+        //     if (contaBancariaMenorSaldo == null) {
+        //         contaBancariaMenorSaldo = conta;
+        //         continue;
+        //     }
+        //     if (conta.getSaldo().compareTo(contaBancariaMenorSaldo.getSaldo()) > 0) {
+        //         contaBancariaMenorSaldo = conta;
+        //     }
+        // }
 
-        if (contaBancariaMenorSaldo != null) {
-            System.out.println("A conta com o maior saldo é %s".formatted(contaBancariaMenorSaldo));
-        }
+        // if (contaBancariaMenorSaldo != null) {
+        //     System.out.println("A conta com o maior saldo é %s".formatted(contaBancariaMenorSaldo));
+        // }
+
+        // contasBancarias.sort(Comparator.comparing(ContaBancaria::getSaldo));
+        Collections.sort(contasBancarias);
+        System.out.println(contasBancarias.get(0));
     }
 }

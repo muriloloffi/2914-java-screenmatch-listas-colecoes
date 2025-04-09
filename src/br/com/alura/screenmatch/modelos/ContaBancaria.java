@@ -2,7 +2,7 @@ package br.com.alura.screenmatch.modelos;
 
 import java.math.BigDecimal;
 
-public class ContaBancaria {
+public class ContaBancaria implements Comparable<ContaBancaria> {
     private String numeroConta;
     private BigDecimal saldo;
 
@@ -17,5 +17,10 @@ public class ContaBancaria {
 
     public String toString() {
         return "%s, saldo: %.2f".formatted(this.numeroConta, this.getSaldo().doubleValue());
+    }
+
+    @Override
+    public int compareTo(ContaBancaria outraConta) {
+        return this.getSaldo().compareTo(outraConta.getSaldo());
     }
 }
