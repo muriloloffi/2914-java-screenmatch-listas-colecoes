@@ -59,22 +59,6 @@ public class PrincipalComExercicio {
         contasBancarias.add(new ContaBancaria("958372-2", BigDecimal.valueOf(12000.00)));
         contasBancarias.add(new ContaBancaria("946372-2", BigDecimal.valueOf(133000.00)));
 
-        // ContaBancaria contaBancariaMenorSaldo = null;
-        // for (ContaBancaria conta : contasBancarias) {
-        //     if (contaBancariaMenorSaldo == null) {
-        //         contaBancariaMenorSaldo = conta;
-        //         continue;
-        //     }
-        //     if (conta.getSaldo().compareTo(contaBancariaMenorSaldo.getSaldo()) > 0) {
-        //         contaBancariaMenorSaldo = conta;
-        //     }
-        // }
-
-        // if (contaBancariaMenorSaldo != null) {
-        //     System.out.println("A conta com o maior saldo é %s".formatted(contaBancariaMenorSaldo));
-        // }
-
-        // contasBancarias.sort(Comparator.comparing(ContaBancaria::getSaldo));
         Collections.sort(contasBancarias);
         System.out.println(contasBancarias.get(0));
     }
