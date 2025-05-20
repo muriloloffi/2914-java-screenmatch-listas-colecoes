@@ -43,7 +43,10 @@ public class Produto implements Comparable<Produto> {
     }
 
     public String toString() {
-        return "Produto: %s (Quantidade: %d)".formatted(this.getNome(), this.getQuantidade());
+        if (this.getQuantidade() != 0) {
+            return "Produto: %s (Quantidade: %d)".formatted(this.getNome(), this.getQuantidade());
+        }
+        return this.getNome() + " - " + this.getPreco().doubleValue();
     }
 
     @Override
