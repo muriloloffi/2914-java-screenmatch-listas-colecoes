@@ -11,48 +11,46 @@ public class PrincipalDesafio {
         Scanner scanner = new Scanner(System.in);
         CartaoDeCredito cartao = null;
         double limite = 0;
-        int opcao = 1;
-
-        System.out.print("Digite o limite do cartão:");
+        int sair = 1;
 
         try {
+            System.out.print("Digite o limite do cartão:");
             limite = scanner.nextDouble();
             cartao = new CartaoDeCredito(limite);
             System.out.println("Limite do cartão: " + limite);
 
-            while (opcao != 0) {
+            while (sair != 0) {
+                if (sair != 1) {
+                    System.out.println("Opção inválida");
+                    System.out.println(USER_INTENTION_REQUEST);
+                    sair = scanner.nextInt();
+                }
+
                 if (cartao.getSaldo().doubleValue() <= 0) {
                     System.out.println("Saldo esgotado");
                     break;
                 }
 
-                switch (opcao) {
-                    case 1:
-                        scanner.nextLine();
-                        System.out.println("Digite o nome do produto");
-                        String nome = scanner.nextLine();
-                        System.out.println("Digite o valor da compra");
-                        double valor = scanner.nextDouble();
-                        if (valor <= 0 || valor > cartao.getSaldo().doubleValue()) {
-                            System.out.println("Compra negada");
-                            System.out.println(USER_INTENTION_REQUEST);
-                            opcao = scanner.nextInt();
-                            break;
-                        }
-                        System.out.println("Compra aprovada");
-                        cartao.addProduto(new Produto(nome, valor));
-                        System.out.println(USER_INTENTION_REQUEST);
-                        opcao = scanner.nextInt();
-                        break;
-                    case 0:
-                        System.out.println("Saindo do programa");
-                        scanner.close();
-                        return;
-                    default:
-                        System.out.println("Opção inválida");
-                        System.out.println(USER_INTENTION_REQUEST);
-                        opcao = scanner.nextInt();
-                        break;
+                scanner.nextLine();
+                System.out.println("Digite o nome do produto");
+                String nome = scanner.nextLine();
+                System.out.println("Digite o valor da compra");
+                Double valor = scanner.nextDouble();
+
+                if (valor.isNaN() || nome.isEmpty()) {
+                    System.out.println("Valores inválidos");
+                    System.out.println(USER_INTENTION_REQUEST);
+                    sair = scanner.nextInt();
+                }
+                boolean compraRealizada = cartao.lancaCompra(new Produto(nome, valor));
+
+                if (compraRealizada) {
+                    System.out.println("Compra aprovada");
+                    System.out.println(USER_INTENTION_REQUEST);
+                    sair = scanner.nextInt();
+                } else {
+                    System.out.println("Compra negada.");
+                    sair = 0;
                 }
             }
         } catch (Exception e) {
@@ -63,8 +61,10 @@ public class PrincipalDesafio {
         }
 
         System.out.println("Lista de compras:");
-        for (Produto produto : cartao.getProdutos()) {
-            System.out.println(produto.toString());
+        if (cartao != null) {
+            for (Produto produto : cartao.getProdutos()) {
+                System.out.println(produto.toString());
+            }
         }
     }
 }

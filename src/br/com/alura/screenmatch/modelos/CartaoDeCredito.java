@@ -41,14 +41,17 @@ public class CartaoDeCredito {
         return this.produtos;
     }
 
-    public void addProduto(Produto produto) {
+    public boolean lancaCompra(Produto produto) {
         if (this.saldo.compareTo(produto.getPreco()) < 0) {
-            throw new RuntimeException("Saldo insuficiente");
+            System.out.println("Saldo insuficiente");
+            return false;
         }
         if (this.produtos.contains(produto)) {
-            throw new RuntimeException("Produto já adicionado");
+            System.out.println("Produto já adicionado");
+            return false;
         }
         this.produtos.add(produto);
         this.saldo = this.saldo.subtract(produto.getPreco());
+        return true;
     }
 }
